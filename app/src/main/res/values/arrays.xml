@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="splash_desc">
+        <item>这是一个新闻聚集地</item>
+        <item>在这个可以获取到各种各样的资讯</item>
+        <item>足不出户，便知天下事</item>
+        <item>看到好的新闻，不要吝啬你的分享哦！</item>
+    </string-array>
+    <array name="splash_icon">
+        <item>@drawable/splash_iv_first</item>
+        <item>@drawable/splash_iv_second</item>
+        <item>@drawable/splash_iv_third</item>
+        <item>@drawable/splash_iv_forth</item>
+    </array>
+    <array name="splash_bg">
+        <item>@color/light_green_500</item>
+        <item>@color/amber_500</item>
+        <item>@color/red_400</item>
+        <item>@color/blue_500</item>
+    </array>
+</resources>

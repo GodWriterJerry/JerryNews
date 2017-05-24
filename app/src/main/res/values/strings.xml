@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">奔走相告</string>
+    <string name="transition_topnew_linear" translatable="false">topnewlinear</string>
+</resources>
