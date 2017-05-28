@@ -16,7 +16,11 @@
     </style>
     <style name="TabStyle" parent="TextAppearance.Design.Tab">
         <!-- Customize your theme here. -->
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="MyTabLayoutTextAppearanceInverse" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>

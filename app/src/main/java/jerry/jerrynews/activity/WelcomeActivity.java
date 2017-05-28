@@ -1,4 +1,4 @@
-package jerry.jerrynews;
+package jerry.jerrynews.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,8 +9,13 @@ import android.view.WindowManager;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class WelcomeActivity extends AppCompatActivity {
+import jerry.jerrynews.R;
 
+/**
+ * Created by Administrator on 2017/5/25.
+ */
+
+public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +37,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     editor.commit();
                     finish();
                 }else{
-                    startActivity(new Intent(WelcomeActivity.this,GuideActivity.class));
+                    startActivity(new Intent(WelcomeActivity.this,TopActivity.class));
                     finish();
                 }
             }

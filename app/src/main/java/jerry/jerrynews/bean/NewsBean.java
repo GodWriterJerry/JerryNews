@@ -1,4 +1,4 @@
-package jerry.jerrynews;
+package jerry.jerrynews.bean;
 
 import java.io.Serializable;
 import java.util.List;

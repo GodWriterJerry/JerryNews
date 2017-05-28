@@ -1,4 +1,4 @@
-package jerry.jerrynews;
+package jerry.jerrynews.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +18,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import jerry.jerrynews.bean.NewsBean;
+import jerry.jerrynews.R;
+import jerry.jerrynews.adapter.NewsAdapter;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -28,17 +31,13 @@ import okhttp3.Response;
  * Created by Administrator on 2017/3/17 0017.
  */
 
-public class Fragment1 extends Fragment {
+public class NewsFragment extends Fragment {
 
     public OkHttpClient mOkHttpClient;
-    //private final List<News> mNewsList = new ArrayList<>();
     private NewsAdapter adapter;
     private RecyclerView recycler_view;
     private LinearLayoutManager layoutManager;
-    // TODO: 2017/5/22 19:54
-
     private int arg;
-
     private List<NewsBean.ResultBean.DataBean> mNewsList = new ArrayList<>();
     private android.os.Handler mHandler;
 
@@ -55,14 +54,14 @@ public class Fragment1 extends Fragment {
     private final String URL9 = "http://v.juhe.cn/toutiao/index?type=caijing&key=db6ccd0992a63eef37c4fcdc3d6dcb93";
     private final String URL10 = "http://v.juhe.cn/toutiao/index?type=shishang&key=db6ccd0992a63eef37c4fcdc3d6dcb93";
 
-    public Fragment1() {
+    public NewsFragment() {
 
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment1, container, false);
+        View view=inflater.inflate(R.layout.news_fragment, container, false);
 
         recycler_view = (RecyclerView) view.findViewById(R.id.recycler_view);
 

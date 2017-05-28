@@ -1,4 +1,4 @@
-package jerry.jerrynews;
+package jerry.jerrynews.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -1,4 +1,4 @@
-package jerry.jerrynews;
+package jerry.jerrynews.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,10 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import java.util.List;
+
+import jerry.jerrynews.bean.NewsBean;
+import jerry.jerrynews.R;
+import jerry.jerrynews.activity.DetailActivity;
 
 /**
  * Created by Administrator on 2017/5/22.

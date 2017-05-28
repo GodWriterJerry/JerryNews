@@ -1,4 +1,4 @@
-package jerry.jerrynews;
+package jerry.jerrynews.activity;
 
 import android.animation.ArgbEvaluator;
 import android.content.Intent;
@@ -18,6 +18,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
+
+import jerry.jerrynews.R;
 
 public class GuideActivity extends AppCompatActivity {
 
@@ -101,7 +103,7 @@ public class GuideActivity extends AppCompatActivity {
                 mButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent=new Intent(GuideActivity.this,MainActivity.class);
+                        Intent intent=new Intent(GuideActivity.this,TopActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -118,4 +120,5 @@ public class GuideActivity extends AppCompatActivity {
             container.removeView((View) object);
         }
     }
+
 }

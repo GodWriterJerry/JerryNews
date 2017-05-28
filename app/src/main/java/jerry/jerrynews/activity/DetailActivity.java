@@ -1,9 +1,8 @@
-package jerry.jerrynews;
+package jerry.jerrynews.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -18,6 +17,9 @@ import org.sufficientlysecure.htmltextview.HtmlTextView;
 
 import java.io.IOException;
 
+import jerry.jerrynews.R;
+import jerry.jerrynews.bean.NewsBean;
+import jerry.jerrynews.utils.ToolsUtil;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -57,7 +59,6 @@ public class DetailActivity extends SwipeBackActivity {
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
 
         mNews = (NewsBean.ResultBean.DataBean) getIntent().getSerializableExtra("news");
-        Log.d("mNews=", mNews.getUrl());
         showProgress();
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(mNews.getTitle());
@@ -71,13 +72,10 @@ public class DetailActivity extends SwipeBackActivity {
                 String content = new String();
                 try {
                     Document doc = Jsoup.connect(mNews.getUrl()).get();
-                    Log.e("一、HTML內容", mNews.getUrl());
                     Elements els = doc.select("p.section");
-                    Log.e("一、HTML內容", els.toString());
                     for (int i = 0; i < els.size(); i++) {
                         Element el = els.get(i);
-                        Log.e("1.标题", el.text());
-                        content = "\2"+content + el.text()+"\n"+"\n"+"\2";
+                        content = content + el.text()+"\n"+"\n"+"\4";
                     }
                     final String finalContent = content;
                     runOnUiThread(new Runnable() {
