@@ -2,6 +2,7 @@ package jerry.jerrynews.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -25,8 +26,8 @@ import jerry.jerrynews.adapter.TopAdapter;
 import jerry.jerrynews.fragment.JokeFragment;
 import jerry.jerrynews.fragment.MainFragment;
 import jerry.jerrynews.fragment.MeFragmemt;
-import jerry.jerrynews.fragment.WeatherFragment;
 import jerry.jerrynews.utils.CustomViewPager;
+import jerry.jerrynews.weather.Fragment.WeatherFragment;
 
 /**
  * Created by Administrator on 2017/5/27.
@@ -41,6 +42,7 @@ public class TopActivity extends AppCompatActivity {
     private DrawerLayout top_drawer_layout;
     private NavigationView top_nav;
     private ActionBarDrawerToggle mDrawerToggle;
+    private long triggerAtTimefirst = 0;
 
 
     @Override
@@ -76,10 +78,14 @@ public class TopActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (top_drawer_layout.isDrawerOpen(GravityCompat.START)) {
+        long triggerAtTimeSecond = triggerAtTimefirst;
+        triggerAtTimefirst = SystemClock.elapsedRealtime();
+        if (triggerAtTimefirst - triggerAtTimeSecond <= 2000) {
+            super.onBackPressed();
+        } else if (top_drawer_layout.isDrawerOpen(GravityCompat.START)) {
             top_drawer_layout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            Toast.makeText(TopActivity.this, "请再点击 Back 键, 确认退出", Toast.LENGTH_SHORT).show();
         }
     }
 
