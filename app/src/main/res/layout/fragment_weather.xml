@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -35,7 +36,28 @@
 
                 <include layout="@layout/weather_space"/>
 
-                <include layout="@layout/weather_forecast"/>
+                <!--<include layout="@layout/weather_forecast"/>-->
+                //自定义view
+
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="1000dp"
+                        android:layout_height="140dp"
+                        android:orientation="horizontal">
+
+                        <jerry.jerrynews.weather.Ui.WeatherLineChart
+                            android:id="@+id/weatherLineChart"
+                            android:layout_width="1000dp"
+                            android:layout_height="140dp"
+                            android:background="#FFFCFF"
+                            app:axes_color="@color/blue_grey_900"/>
+                    </LinearLayout>
+                </HorizontalScrollView>
 
                 <include layout="@layout/weather_space"/>
 

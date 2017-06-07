@@ -24,7 +24,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -38,6 +37,7 @@ import com.baidu.location.LocationClientOption;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import jerry.jerrynews.R;
@@ -46,8 +46,8 @@ import jerry.jerrynews.weather.Data.Forecast;
 import jerry.jerrynews.weather.Data.Hour;
 import jerry.jerrynews.weather.Data.Hourly;
 import jerry.jerrynews.weather.Data.Weather;
+import jerry.jerrynews.weather.Ui.WeatherLineChart;
 import jerry.jerrynews.weather.Util.TaskKiller;
-import jerry.jerrynews.weather.Util.Time;
 import jerry.jerrynews.weather.Util.Utility;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -162,6 +162,10 @@ public class WeatherFragment extends Fragment {
 
     public SwipeRefreshLayout swipeRefresh;
 
+    //自定义view
+    private WeatherLineChart weatherLineChart;
+    private List<Forecast> mForecastList=new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -215,6 +219,9 @@ public class WeatherFragment extends Fragment {
         uvBtn = (Button) view.findViewById(R.id.uv_button);
         clothesBtn = (Button) view.findViewById(R.id.clothes_button);
         coldBtn = (Button) view.findViewById(R.id.cold_button);
+
+        //自定义view
+        weatherLineChart= (WeatherLineChart) view.findViewById(R.id.weatherLineChart);
 
         mlocationClient = new LocationClient(getContext());
         mlocationClient.registerLocationListener(myListener);
@@ -364,7 +371,9 @@ public class WeatherFragment extends Fragment {
         weatherInfoText.setText(weatherInfo);
         updateTimeText.setText("数据更新时间: " + updateTime.split(" ")[1]);
 
-        forecastLayout.removeAllViews();
+        //未来几天的天气预报
+        // TODO: 2017/6/3 把列表转化为折线图
+        /*forecastLayout.removeAllViews();
         for (Forecast forecast : weather.forecastList) {
             // 将未来几天的天气添加到视图中
             View view = LayoutInflater.from(getContext()).inflate(R.layout.weather_forecast_item, forecastLayout, false);
@@ -385,7 +394,16 @@ public class WeatherFragment extends Fragment {
             infoText.setText(forecast.more.info);
             maxMinText.setText(forecast.temperature.max + " ～ " + forecast.temperature.min);
             forecastLayout.addView(view);
+        }*/
+        // TODO: 2017/6/3 开始自定义折线图
+
+        for (Iterator forecast = weather.forecastList.iterator(); forecast.hasNext();) {
+            Forecast forecastMsg = (Forecast) forecast.next();
+            mForecastList.add(forecastMsg);
         }
+
+        weatherLineChart.setWeather(mForecastList);
+        Toast.makeText(getContext(),mForecastList.size()+"",Toast.LENGTH_SHORT).show();
 
         hourList.clear();
         for (Hourly hourly : weather.hourlyList) {
